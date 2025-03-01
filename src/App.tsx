@@ -7,6 +7,8 @@ import { getCoins, getGlobalData } from "./service/coin";
 import useFetch from "./hooks/useFetch";
 import { useEffect, useState } from "react";
 import { MarketStat } from "./types/coin";
+import CoinCardSkeleton from "./components/loading/CoinCard";
+import DashboardCardSkeleton from "./components/loading/DashboardCard";
 
 function App() {
   const [marketStats, setMarketStats] = useState<MarketStat[]>([]);
@@ -17,7 +19,7 @@ function App() {
     sparkline: false,
   });
 
-  const { data: globalData } = useFetch(getGlobalData);
+  const { data: globalData, loading: globalLoading } = useFetch(getGlobalData);
 
   useEffect(() => {
     if (!globalData) return;
@@ -52,22 +54,29 @@ function App() {
     <DashobardLayout>
       <div className="flex flex-col space-y-6">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-          {marketStats.map((stat, index) => (
-            <DashboardCard
-              key={index}
-              title={stat.title}
-              value={stat.value}
-              icon={stat.icon}
-            />
-          ))}
+          {!loading
+            ? new Array(4)
+                .fill(null)
+                .map((_, index) => <CoinCardSkeleton key={index} />)
+            : marketStats.map((stat, index) => (
+                <DashboardCard
+                  key={index}
+                  title={stat.title}
+                  value={stat.value}
+                  icon={stat.icon}
+                />
+              ))}
         </div>
 
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {data &&
-            !loading &&
-            (data as any[]).map((coin: any) => (
-              <CoinCard key={coin.id} coin={coin} />
-            ))}
+          {!globalLoading
+            ? new Array(4)
+                .fill(null)
+                .map((_, index) => <DashboardCardSkeleton key={index} />)
+            : data &&
+              (data as any[]).map((coin: any) => (
+                <CoinCard key={coin.id} coin={coin} />
+              ))}
         </div>
       </div>
     </DashobardLayout>
