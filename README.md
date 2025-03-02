@@ -1,54 +1,99 @@
-# React + TypeScript + Vite
+# Crypto Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a **Crypto Dashboard** project built using **React, TypeScript, and Tailwind CSS**. It provides real-time cryptocurrency data, market statistics, price charts, and a responsive UI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Features
 
-## Expanding the ESLint configuration
+- **Live Crypto Market Data** – Fetches real-time market stats from the CoinGecko API.
+- **Crypto Price Charts** – Displays historical price data using charts.
+- **Mobile-Friendly Navigation** – Responsive **Sheet Drawer** for mobile menu.
+- **Global API Handling** – Axios with interceptors for error handling.
+- **Custom Hooks** – `useFetch` for fetching API data efficiently.
+- **ShadCN UI Components** – Modern and clean UI components for better user experience.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🚀 Tech Stack
+
+- **Frontend**: React, TypeScript, Tailwind CSS, ShadCN UI
+- **State Management**: React Hooks
+- **API Handling**: Axios with interceptors
+- **Charting**: Recharts
+
+---
+
+## 📂 Folder Structure
+
+```
+📦 crypto-dashboard
+├── 📂 src
+│   ├── 📂 assets         # for assets
+│   ├── 📂 axios          # for axios interceptor config
+│   ├── 📂 components     # Reusable UI components
+│   ├── 📂 contant        # for all contant
+│   ├── 📂 lib            # shadcn lib
+│   ├── 📂 hooks          # Custom React hooks
+│   ├── 📂 pages          # Application pages
+│   ├── 📂 service        # for api server function
+│   ├── 📂 types          # type
+│   ├── 📄 App.tsx        # Main app file
+│   ├── 📄 main.tsx       # React entry point
+├── 📄 README.md          # Project documentation
+├── 📄 package.json       # Dependencies and scripts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Installation & Setup
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/dev-aman-7/dashboard.git
+cd dashboard
 ```
+
+### 2️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+### 3️⃣ Start the Development Server
+
+```bash
+npm run dev
+```
+
+The app will be available at **http://localhost:5173** 🚀
+
+---
+
+## 📊 API Integration
+
+This project uses the **CoinGecko API** to fetch cryptocurrency data. Make sure to check their documentation for rate limits and additional features.
+
+---
+
+## 📱 Responsive Design
+
+- **Desktop**: Full dashboard view with charts & market data.
+- **Mobile**: Sheet Drawer for navigation and a clean UI layout.
+
+---
+
+## 📌 To-Do (Future Enhancements)
+
+- ✅ Improve chart UI with more historical data options.
+- ✅ Add user authentication for a personalized experience.
+- ✅ Implement dark mode for better accessibility.
+
+---
+
+## 📝 Notes
+
+This project was given as an **assignment by a recruiter** and is built with best practices in mind. The goal was to showcase **React skills, API handling, and UI/UX improvements**.
+
+For any questions, feel free to reach out! 🚀
