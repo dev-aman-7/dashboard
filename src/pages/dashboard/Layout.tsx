@@ -28,9 +28,9 @@ export const DashobardLayout = ({
       </div>
 
       {/* Main Content */}
-      <div className="w-full h-full flex flex-col">
+      <div className="w-full h-full flex flex-col overflow-hidden relative">
         <Navbar />
-        <div className="container bg-secondary flex-1 overflow-y-auto h-0">
+        <div className="container bg-secondary overflow-y-auto h-screen absolute top-0 pt-20">
           {children}
           <Toaster />
         </div>

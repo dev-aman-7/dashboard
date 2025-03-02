@@ -8,7 +8,7 @@ interface DashboardCardProps {
 
 const DashboardCard = ({ title, value, icon }: DashboardCardProps) => {
   return (
-    <Card className="p-6 bg-background text-accent shadow-none rounded-[8px] border-none overflow-hidden">
+    <Card className="p-6 bg-background text-accent shadow-none rounded-[8px] border-none overflow-hidden hover:shadow-lg transition-all">
       <CardContent className="flex items-center justify-start gap-4">
         <div>{icon}</div>
         <div>

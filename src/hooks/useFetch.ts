@@ -1,14 +1,24 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
-const useFetch = (fn: any, params = {}) => {
-  const [data, setData] = useState(null);
+interface UseFetchProps<T> {
+  fetchFn: () => Promise<T>;
+  dependencies?: any[];
+  onError?: (error: any) => void;
+}
+
+const useFetch = <T>({
+  fetchFn,
+  dependencies = [],
+  onError,
+}: UseFetchProps<T>) => {
+  const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
 
-    if (typeof fn !== "function") {
+    if (typeof fetchFn !== "function") {
       toast.error("Invalid fetch function provided!");
       setLoading(false);
       return;
@@ -17,10 +27,12 @@ const useFetch = (fn: any, params = {}) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fn(params);
-        if (isMounted) setData(response.data);
+        const response = await fetchFn();
+        if (isMounted) setData(response);
       } catch (error) {
         console.error("Fetch Error:", error);
+        if (onError) onError(error);
+        else toast.error("Failed to fetch data.");
       } finally {
         if (isMounted) setLoading(false);
       }
@@ -31,7 +43,7 @@ const useFetch = (fn: any, params = {}) => {
     return () => {
       isMounted = false;
     };
-  }, [fn, JSON.stringify(params)]);
+  }, dependencies);
 
   return { data, loading };
 };

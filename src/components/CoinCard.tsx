@@ -6,8 +6,12 @@ interface CoinCardProps {
 const CoinCard = ({ coin }: CoinCardProps) => {
   return (
     <Card className="w-full bg-background shadow-none border-none rounded-[8px] hover:shadow-lg transition-all">
-      <CardHeader className="flex flex-row items-center gap-4">
-        <img src={coin.image} alt={coin.name} width={50} height={50} />
+      <CardHeader className="flex flex-col md:flex-row items-center gap-4">
+        <img
+          src={coin.image}
+          alt={coin.name}
+          className="w-32 h-32 md:w-16 md:h-16"
+        />
         <CardTitle className="text-lg font-semibold">
           {coin.name} ({coin.symbol})
         </CardTitle>
